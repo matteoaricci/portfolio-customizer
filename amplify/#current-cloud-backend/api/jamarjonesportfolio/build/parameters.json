@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "jamarjonesportfolio",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "S3DeploymentBucket": "amplify-jamarjonesportfolio-dev-94308-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/eff3a44b6f55a6e605053be006c9e5ce15d483c6"
+}

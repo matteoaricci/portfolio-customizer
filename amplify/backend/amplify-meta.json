@@ -1,0 +1,111 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jamarjonesportfolio-dev-94308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::686517341427:role/amplify-jamarjonesportfolio-dev-94308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::686517341427:role/amplify-jamarjonesportfolio-dev-94308-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-jamarjonesportfolio-dev-94308-deployment",
+      "UnauthRoleName": "amplify-jamarjonesportfolio-dev-94308-unauthRole",
+      "StackName": "amplify-jamarjonesportfolio-dev-94308",
+      "StackId": "arn:aws:cloudformation:us-east-2:686517341427:stack/amplify-jamarjonesportfolio-dev-94308/b3c9e910-23de-11ee-9ec6-06cae47c6d25",
+      "AmplifyAppId": "d2w6md3ie39bsv"
+    }
+  },
+  "api": {
+    "jamarjonesportfolio": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        },
+        "GraphQLAPIIdOutput": "en5xot23bfhdll2pz62a4yca4e",
+        "GraphQLAPIEndpointOutput": "https://aa27ho6uzzes3kvjt4dz7vpefa.appsync-api.us-east-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-v77k4xuannd5nnzhvvwhkq5msm"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-07-31T00:38:52.786Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jamarjonesportfolio-dev-94308-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apijamarjonesportfolio"
+      }
+    }
+  },
+  "auth": {
+    "jamarjonesportfolioa8f4f2a4": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "UserPoolId": "us-east-2_8emuGqDkM",
+        "AppClientIDWeb": "g1qn6hs6ic3jbobj8d0h9b30j",
+        "AppClientID": "7gbcfmdnoa3d1vlc4for8tl9pk",
+        "IdentityPoolId": "us-east-2:e3ea1514-c7ba-4364-a789-0f6e76ed2f77",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-2:686517341427:userpool/us-east-2_8emuGqDkM",
+        "IdentityPoolName": "jamarjonesportfolioa8f4f2a4_identitypool_a8f4f2a4__dev",
+        "UserPoolName": "jamarjonesportfolioa8f4f2a4_userpool_a8f4f2a4"
+      },
+      "lastPushTimeStamp": "2023-07-31T00:38:52.787Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jamarjonesportfolio-dev-94308-deployment/amplify-cfn-templates/auth/jamarjonesportfolioa8f4f2a4-cloudformation-template.json",
+        "logicalId": "authjamarjonesportfolioa8f4f2a4"
+      },
+      "lastPushDirHash": "wPuNw6+gF2j86FpvYzcZWMwtiyw="
+    }
+  },
+  "function": {},
+  "storage": {
+    "portfolioimages": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "output": {
+        "BucketName": "jamarjonesportfolio20bdcca308cd4e34a437ffb95e2a94308-dev",
+        "Region": "us-east-2"
+      },
+      "lastPushTimeStamp": "2023-07-31T00:38:54.736Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-jamarjonesportfolio-dev-94308-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageportfolioimages"
+      }
+    }
+  }
+}

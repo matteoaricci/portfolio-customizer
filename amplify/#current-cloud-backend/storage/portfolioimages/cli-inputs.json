@@ -1,0 +1,16 @@
+{
+  "resourceName": "portfolioimages",
+  "policyUUID": "b8f43542",
+  "bucketName": "jamarjonesportfolio20bdcca308cd4e34a437ffb95e2a",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

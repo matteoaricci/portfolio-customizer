@@ -1,0 +1,397 @@
+type Film @aws_iam @aws_api_key {
+  id: ID!
+  title: String!
+  description: String!
+  coverImagePath: String!
+  type: String!
+  screenshots(filter: ModelScreenshotFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelScreenshotConnection
+  behindSceneShots(filter: ModelBehindSceneShotFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelBehindSceneShotConnection
+  videoUrl: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Screenshot @aws_iam @aws_api_key {
+  id: ID!
+  imagePath: String!
+  film: Film
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  filmScreenshotsId: ID
+}
+
+type BehindSceneShot @aws_iam @aws_api_key {
+  id: ID!
+  imagePath: String!
+  film: Film
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  filmBehindSceneShotsId: ID
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelFilmConnection @aws_api_key @aws_iam {
+  items: [Film]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelFilmFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  description: ModelStringInput
+  coverImagePath: ModelStringInput
+  type: ModelStringInput
+  videoUrl: ModelStringInput
+  and: [ModelFilmFilterInput]
+  or: [ModelFilmFilterInput]
+  not: ModelFilmFilterInput
+  _deleted: ModelBooleanInput
+}
+
+type Query {
+  getFilm(id: ID!): Film @aws_api_key @aws_iam
+  listFilms(filter: ModelFilmFilterInput, limit: Int, nextToken: String): ModelFilmConnection @aws_api_key @aws_iam
+  syncFilms(filter: ModelFilmFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelFilmConnection @aws_api_key @aws_iam
+  getScreenshot(id: ID!): Screenshot @aws_api_key @aws_iam
+  listScreenshots(filter: ModelScreenshotFilterInput, limit: Int, nextToken: String): ModelScreenshotConnection @aws_api_key @aws_iam
+  syncScreenshots(filter: ModelScreenshotFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelScreenshotConnection @aws_api_key @aws_iam
+  getBehindSceneShot(id: ID!): BehindSceneShot @aws_api_key @aws_iam
+  listBehindSceneShots(filter: ModelBehindSceneShotFilterInput, limit: Int, nextToken: String): ModelBehindSceneShotConnection @aws_api_key @aws_iam
+  syncBehindSceneShots(filter: ModelBehindSceneShotFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelBehindSceneShotConnection @aws_api_key @aws_iam
+}
+
+input ModelFilmConditionInput {
+  title: ModelStringInput
+  description: ModelStringInput
+  coverImagePath: ModelStringInput
+  type: ModelStringInput
+  videoUrl: ModelStringInput
+  and: [ModelFilmConditionInput]
+  or: [ModelFilmConditionInput]
+  not: ModelFilmConditionInput
+  _deleted: ModelBooleanInput
+}
+
+input CreateFilmInput {
+  id: ID
+  title: String!
+  description: String!
+  coverImagePath: String!
+  type: String!
+  videoUrl: String
+  _version: Int
+}
+
+input UpdateFilmInput {
+  id: ID!
+  title: String
+  description: String
+  coverImagePath: String
+  type: String
+  videoUrl: String
+  _version: Int
+}
+
+input DeleteFilmInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createFilm(input: CreateFilmInput!, condition: ModelFilmConditionInput): Film @aws_api_key @aws_iam
+  updateFilm(input: UpdateFilmInput!, condition: ModelFilmConditionInput): Film @aws_api_key @aws_iam
+  deleteFilm(input: DeleteFilmInput!, condition: ModelFilmConditionInput): Film @aws_api_key @aws_iam
+  createScreenshot(input: CreateScreenshotInput!, condition: ModelScreenshotConditionInput): Screenshot @aws_api_key @aws_iam
+  updateScreenshot(input: UpdateScreenshotInput!, condition: ModelScreenshotConditionInput): Screenshot @aws_api_key @aws_iam
+  deleteScreenshot(input: DeleteScreenshotInput!, condition: ModelScreenshotConditionInput): Screenshot @aws_api_key @aws_iam
+  createBehindSceneShot(input: CreateBehindSceneShotInput!, condition: ModelBehindSceneShotConditionInput): BehindSceneShot @aws_api_key @aws_iam
+  updateBehindSceneShot(input: UpdateBehindSceneShotInput!, condition: ModelBehindSceneShotConditionInput): BehindSceneShot @aws_api_key @aws_iam
+  deleteBehindSceneShot(input: DeleteBehindSceneShotInput!, condition: ModelBehindSceneShotConditionInput): BehindSceneShot @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionFilmFilterInput {
+  id: ModelSubscriptionIDInput
+  title: ModelSubscriptionStringInput
+  description: ModelSubscriptionStringInput
+  coverImagePath: ModelSubscriptionStringInput
+  type: ModelSubscriptionStringInput
+  videoUrl: ModelSubscriptionStringInput
+  and: [ModelSubscriptionFilmFilterInput]
+  or: [ModelSubscriptionFilmFilterInput]
+  _deleted: ModelBooleanInput
+}
+
+type Subscription {
+  onCreateFilm(filter: ModelSubscriptionFilmFilterInput): Film @aws_subscribe(mutations: ["createFilm"]) @aws_api_key @aws_iam
+  onUpdateFilm(filter: ModelSubscriptionFilmFilterInput): Film @aws_subscribe(mutations: ["updateFilm"]) @aws_api_key @aws_iam
+  onDeleteFilm(filter: ModelSubscriptionFilmFilterInput): Film @aws_subscribe(mutations: ["deleteFilm"]) @aws_api_key @aws_iam
+  onCreateScreenshot(filter: ModelSubscriptionScreenshotFilterInput): Screenshot @aws_subscribe(mutations: ["createScreenshot"]) @aws_api_key @aws_iam
+  onUpdateScreenshot(filter: ModelSubscriptionScreenshotFilterInput): Screenshot @aws_subscribe(mutations: ["updateScreenshot"]) @aws_api_key @aws_iam
+  onDeleteScreenshot(filter: ModelSubscriptionScreenshotFilterInput): Screenshot @aws_subscribe(mutations: ["deleteScreenshot"]) @aws_api_key @aws_iam
+  onCreateBehindSceneShot(filter: ModelSubscriptionBehindSceneShotFilterInput): BehindSceneShot @aws_subscribe(mutations: ["createBehindSceneShot"]) @aws_api_key @aws_iam
+  onUpdateBehindSceneShot(filter: ModelSubscriptionBehindSceneShotFilterInput): BehindSceneShot @aws_subscribe(mutations: ["updateBehindSceneShot"]) @aws_api_key @aws_iam
+  onDeleteBehindSceneShot(filter: ModelSubscriptionBehindSceneShotFilterInput): BehindSceneShot @aws_subscribe(mutations: ["deleteBehindSceneShot"]) @aws_api_key @aws_iam
+}
+
+type ModelScreenshotConnection @aws_iam @aws_api_key {
+  items: [Screenshot]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelScreenshotFilterInput {
+  id: ModelIDInput
+  imagePath: ModelStringInput
+  and: [ModelScreenshotFilterInput]
+  or: [ModelScreenshotFilterInput]
+  not: ModelScreenshotFilterInput
+  _deleted: ModelBooleanInput
+  filmScreenshotsId: ModelIDInput
+}
+
+input ModelScreenshotConditionInput {
+  imagePath: ModelStringInput
+  and: [ModelScreenshotConditionInput]
+  or: [ModelScreenshotConditionInput]
+  not: ModelScreenshotConditionInput
+  _deleted: ModelBooleanInput
+  filmScreenshotsId: ModelIDInput
+}
+
+input CreateScreenshotInput {
+  id: ID
+  imagePath: String!
+  _version: Int
+  filmScreenshotsId: ID
+}
+
+input UpdateScreenshotInput {
+  id: ID!
+  imagePath: String
+  _version: Int
+  filmScreenshotsId: ID
+}
+
+input DeleteScreenshotInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionScreenshotFilterInput {
+  id: ModelSubscriptionIDInput
+  imagePath: ModelSubscriptionStringInput
+  and: [ModelSubscriptionScreenshotFilterInput]
+  or: [ModelSubscriptionScreenshotFilterInput]
+  _deleted: ModelBooleanInput
+}
+
+type ModelBehindSceneShotConnection @aws_iam @aws_api_key {
+  items: [BehindSceneShot]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelBehindSceneShotFilterInput {
+  id: ModelIDInput
+  imagePath: ModelStringInput
+  and: [ModelBehindSceneShotFilterInput]
+  or: [ModelBehindSceneShotFilterInput]
+  not: ModelBehindSceneShotFilterInput
+  _deleted: ModelBooleanInput
+  filmBehindSceneShotsId: ModelIDInput
+}
+
+input ModelBehindSceneShotConditionInput {
+  imagePath: ModelStringInput
+  and: [ModelBehindSceneShotConditionInput]
+  or: [ModelBehindSceneShotConditionInput]
+  not: ModelBehindSceneShotConditionInput
+  _deleted: ModelBooleanInput
+  filmBehindSceneShotsId: ModelIDInput
+}
+
+input CreateBehindSceneShotInput {
+  id: ID
+  imagePath: String!
+  _version: Int
+  filmBehindSceneShotsId: ID
+}
+
+input UpdateBehindSceneShotInput {
+  id: ID!
+  imagePath: String
+  _version: Int
+  filmBehindSceneShotsId: ID
+}
+
+input DeleteBehindSceneShotInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionBehindSceneShotFilterInput {
+  id: ModelSubscriptionIDInput
+  imagePath: ModelSubscriptionStringInput
+  and: [ModelSubscriptionBehindSceneShotFilterInput]
+  or: [ModelSubscriptionBehindSceneShotFilterInput]
+  _deleted: ModelBooleanInput
+}

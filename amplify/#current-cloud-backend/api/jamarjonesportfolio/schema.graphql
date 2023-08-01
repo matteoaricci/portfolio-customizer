@@ -1,0 +1,23 @@
+type Film @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  description: String!
+  coverImagePath: String!
+  type: String!
+  screenshots: [Screenshot] @hasMany
+  behindSceneShots: [BehindSceneShot] @hasMany
+  videoUrl: String
+}
+
+type Screenshot @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  imagePath: String!
+  film: Film @belongsTo
+}
+
+type BehindSceneShot @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  imagePath: String!
+  film: Film @belongsTo
+}
+ 

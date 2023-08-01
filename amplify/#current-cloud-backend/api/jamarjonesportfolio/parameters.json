@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "jamarjonesportfolio",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-07-17T13:38:34.733Z"
+}
