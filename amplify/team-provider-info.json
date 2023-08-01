@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jamarjonesportfolio-dev-94308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::686517341427:role/amplify-jamarjonesportfolio-dev-94308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::686517341427:role/amplify-jamarjonesportfolio-dev-94308-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-jamarjonesportfolio-dev-94308-deployment",
+      "UnauthRoleName": "amplify-jamarjonesportfolio-dev-94308-unauthRole",
+      "StackName": "amplify-jamarjonesportfolio-dev-94308",
+      "StackId": "arn:aws:cloudformation:us-east-2:686517341427:stack/amplify-jamarjonesportfolio-dev-94308/b3c9e910-23de-11ee-9ec6-06cae47c6d25",
+      "AmplifyAppId": "d2w6md3ie39bsv"
+    },
+    "categories": {
+      "auth": {
+        "jamarjonesportfolio": {},
+        "jamarjonesportfolioa8f4f2a4": {}
+      },
+      "storage": {
+        "s3jamarjonesportfolioimages": {},
+        "portfolioimages": {}
+      }
+    }
+  }
+}
